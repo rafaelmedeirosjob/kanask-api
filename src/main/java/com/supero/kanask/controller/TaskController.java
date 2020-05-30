@@ -33,7 +33,7 @@ public class TaskController {
 	@Autowired
 	private TaskRepository taskRepository;
 	
-	@CrossOrigin(origins = "https://kanask-client.herokuapp.com")
+	@CrossOrigin(origins = "https://kanask-client.herokuapp.com/")
 	@GetMapping
 	public List<TaskDto> list() {
 		List<Task> Tasks = taskRepository.findAll();
