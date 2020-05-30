@@ -33,13 +33,13 @@ public class TaskController {
 	@Autowired
 	private TaskRepository taskRepository;
 	
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "https://kanask-client.herokuapp.com")
 	@GetMapping
 	public List<TaskDto> list() {
 		List<Task> Tasks = taskRepository.findAll();
 		return TaskDto.converter(Tasks);
 	}
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "https://kanask-client.herokuapp.com")
 	@PostMapping
 	@Transactional
 	public ResponseEntity<?> create(@RequestBody @Valid CreateTaskRequest request, UriComponentsBuilder uriBuilder) {
@@ -50,7 +50,7 @@ public class TaskController {
 		URI uri = uriBuilder.path("/tasks/{id}").buildAndExpand(task.getId()).toUri();
 		return ResponseEntity.created(uri).body(new TaskDto(task));
 	}
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "https://kanask-client.herokuapp.com")
 	@PutMapping("/{id}")
 	@Transactional
 	public ResponseEntity<TaskDto> update(@PathVariable Long id, @RequestBody @Valid UpdateTaskRequest request) {
@@ -61,7 +61,7 @@ public class TaskController {
 		}
 		return ResponseEntity.notFound().build();
 	}
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "https://kanask-client.herokuapp.com")
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable Long id) {
